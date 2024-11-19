@@ -1,0 +1,172 @@
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PelíCrítica</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="contacto.component.css" rel="stylesheet" />
+  </head>
+
+  <body class="bg-dark text-light">
+    <div class="container mt-5">
+      <h2>Contacto</h2>
+      <form action="/submit-form" method="POST">
+        <div class="mb-3">
+          <label for="name" class="form-label">Nombre</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            placeholder="Ingresa tu nombre"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Correo electrónico</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="Ingresa tu correo electrónico"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="message" class="form-label">Mensaje</label>
+          <textarea
+            class="form-control"
+            id="message"
+            rows="4"
+            placeholder="Escribe tu mensaje"
+            required
+          ></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Enviar</button>
+      </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // script.js
+
+      // Selecciona el formulario de búsqueda y el input
+      const searchForm = document.querySelector("form");
+      const searchInput = searchForm.querySelector('input[type="search"]');
+      const movieContainer = document.querySelector(".row"); // Contenedor de las películas
+      const movieCards = Array.from(document.querySelectorAll(".col-md-3")); // Convertir NodeList en array para manipulación
+
+      // Evento de búsqueda
+      searchForm.addEventListener("submit", (e) => {
+        e.preventDefault(); // Evita que la página se recargue
+        const searchTerm = searchInput.value.toLowerCase(); // Término de búsqueda en minúsculas
+
+        // Filtra y ordena las tarjetas de películas
+        const matchingCards = movieCards.filter((col) => {
+          const title = col
+            .querySelector(".card-title")
+            .textContent.toLowerCase();
+          const match = title.includes(searchTerm);
+          col.style.display = match ? "block" : "none"; // Muestra u oculta según el término de búsqueda
+          return match;
+        });
+
+        // Limpiar el contenedor de las películas
+        movieContainer.innerHTML = "";
+
+        // Agrega las tarjetas coincidentes al inicio, seguidas de las no coincidentes
+        matchingCards.forEach((card) => movieContainer.appendChild(card));
+        movieCards
+          .filter((col) => !matchingCards.includes(col))
+          .forEach((card) => movieContainer.appendChild(card));
+      });
+    </script>
+    <script>
+      // script.js
+
+      // Selecciona el formulario de búsqueda, input de búsqueda, contenedor de películas y las tarjetas
+      // script.js
+
+      // Selecciona el formulario de búsqueda, input de búsqueda, contenedor de películas y las tarjetas
+      // Selecciona el menú desplegable de filtros
+      const filterMenu = document.querySelector(".dropdown-menu");
+
+      // Función para ordenar y mostrar las películas
+      function updateMoviesDisplay(filteredMovies) {
+        movieContainer.innerHTML = ""; // Limpia el contenedor de películas
+        filteredMovies.forEach((card) => movieContainer.appendChild(card)); // Añade las tarjetas ordenadas
+      }
+
+      // Evento de búsqueda
+      searchForm.addEventListener("submit", (e) => {
+        e.preventDefault(); // Evita el envío del formulario
+        const searchTerm = searchInput.value.toLowerCase();
+
+        // Filtra las tarjetas de películas
+        const matchingCards = movieCards.filter((col) => {
+          const title = col
+            .querySelector(".card-title")
+            .textContent.toLowerCase();
+          const match = title.includes(searchTerm);
+          col.style.display = match ? "block" : "none";
+          return match;
+        });
+
+        // Muestra solo las tarjetas coincidentes al principio
+        updateMoviesDisplay(
+          matchingCards.concat(
+            movieCards.filter((col) => !matchingCards.includes(col))
+          )
+        );
+      });
+
+      // Evento para el filtrado por criterio
+      filterMenu.addEventListener("click", (e) => {
+        e.preventDefault(); // Evita el recargado de página
+        const filter = e.target.dataset.filter; // Obtiene el filtro seleccionado
+
+        // Ordena las tarjetas según el filtro
+        let sortedCards = [...movieCards];
+        switch (filter) {
+          case "best":
+            // Mejores películas (orden descendente por calificación)
+            sortedCards.sort((a, b) => {
+              return (
+                parseFloat(b.querySelector(".badge").textContent) -
+                parseFloat(a.querySelector(".badge").textContent)
+              );
+            });
+            break;
+          case "worst":
+            // Peores películas (orden ascendente por calificación)
+            sortedCards.sort((a, b) => {
+              return (
+                parseFloat(a.querySelector(".badge").textContent) -
+                parseFloat(b.querySelector(".badge").textContent)
+              );
+            });
+            break;
+          case "alpha":
+            // Orden alfabético por título
+            sortedCards.sort((a, b) => {
+              return a
+                .querySelector(".card-title")
+                .textContent.localeCompare(
+                  b.querySelector(".card-title").textContent
+                );
+            });
+            break;
+        }
+
+        // Muestra las tarjetas ordenadas según el filtro
+        sortedCards.forEach((col) => (col.style.display = "block")); // Asegura que todas las tarjetas estén visibles
+        updateMoviesDisplay(sortedCards);
+      });
+    </script>
+  </body>
+</html>

@@ -1,1 +1,114 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  background-color: #121212;
+  color: #f8f9fa;
+  font-family: "Arial", sans-serif;
+  line-height: 1.6;
+}
+
+.navbar {
+  background-color: #121212;
+  border-bottom: 3px solid #ffc107;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+}
+.navbar .navbar-brand {
+  font-size: 1.8rem;
+  color: #ffc107;
+}
+.navbar .navbar-brand:hover {
+  color: #ffce3a;
+}
+
+.card {
+  background-color: #343a40;
+  color: #f8f9fa;
+  transition: transform 0.4s, box-shadow 0.4s;
+  border-radius: 12px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+.card:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.7);
+}
+.card .card-img-top {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+.card .card-body {
+  padding: 1.2rem;
+}
+.card .card-body h5.card-title {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #ffc107;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.card .card-body .card-text {
+  font-style: italic;
+  opacity: 0.9;
+}
+
+.dropdown-menu {
+  background-color: #343a40;
+  border-radius: 12px;
+  border: 1px solid #495057;
+}
+.dropdown-menu .dropdown-item {
+  color: #f8f9fa;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  transition: background-color 0.3s;
+}
+.dropdown-menu .dropdown-item:hover,
+.dropdown-menu .dropdown-item:focus {
+  background-color: #495057;
+  color: #ffc107;
+  font-weight: bold;
+}
+
+.nav-tabs {
+  border-bottom: 2px solid #495057;
+}
+.nav-tabs .nav-item .nav-link {
+  color: #f8f9fa;
+  font-weight: bold;
+  padding: 0.8rem 1.2rem;
+  transition: color 0.3s, background-color 0.3s;
+}
+.nav-tabs .nav-item .nav-link:hover {
+  color: #ffc107;
+  background-color: rgba(23, 162, 184, 0.1);
+  border-radius: 6px;
+}
+.nav-tabs .nav-item .nav-link.active {
+  color: #ffc107;
+  background-color: rgba(23, 162, 184, 0.2);
+  border: 1px solid #ffc107;
+  border-bottom: none;
+  border-radius: 12px 12px 0 0;
+}
+
+.best {
+  color: #ffc107;
+  font-weight: bold;
+  border-bottom: 2px solid #ffc107;
+  text-transform: uppercase;
+  padding: 0.2rem 0;
+}
+
+.worst {
+  color: #f8f9fa;
+  font-weight: bold;
+  border-bottom: 2px solid #f8f9fa;
+  text-transform: uppercase;
+  padding: 0.2rem 0;
+}
+
+.alpha {
+  color: #17a2b8;
+  font-weight: bold;
+  border-bottom: 2px solid #17a2b8;
+  text-transform: uppercase;
+  padding: 0.2rem 0;
+} /*# sourceMappingURL=style.css.map */
